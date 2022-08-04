@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import Countries from './components/Countries'
+import './App.css'
+
+
 
 const url = "https://restcountries.com/v3.1/all";
 
@@ -18,14 +22,12 @@ const App = () => {
       setCountries(data);
       setIsloading(false);
       setError(null);
-      console.log(data);
+      // console.log(data);
     }
     catch (error) {
       setIsloading(false);
       setError(error);
-
     }
-
 
   }
 
@@ -39,11 +41,15 @@ const App = () => {
 
 
 
-  return (
-    <div>
-      <h1>Ikbal</h1>
-    </div>
-  )
-}
+  return <>
+    <h1>Country App</h1>
+    {isLoading && <h2>Loading...</h2>}
+    {error && <h2> {error.message} </h2>}
+
+    {countries && <Countries countries={countries} />}
+
+  </>
+
+};
 
 export default App
